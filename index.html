@@ -1,0 +1,584 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For My Love ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #09000f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND */
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(circle at 20% 20%, #3d123f, transparent 35%),
+                radial-gradient(circle at 80% 80%, #260b36, transparent 35%),
+                #09000f;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                radial-gradient(white 1px, transparent 1px),
+                radial-gradient(white 1px, transparent 1px);
+            background-size: 80px 80px, 130px 130px;
+            background-position: 0 0, 40px 60px;
+            opacity: .35;
+            animation: moveStars 30s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(100px);
+            }
+        }
+
+        /* FLOATING HEARTS */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            color: #ff7eb6;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            opacity: .8;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.8) rotate(30deg);
+                opacity: 0;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 2s ease;
+        }
+
+        .small-text {
+            color: #ff9dcc;
+            letter-spacing: 4px;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 10vw, 100px);
+            font-family: Georgia, serif;
+            font-weight: normal;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #ff8fc8;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #d9bfd3;
+            line-height: 1.8;
+        }
+
+        .scroll {
+            margin-top: 50px;
+            color: #ff9dcc;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(12px);
+            }
+        }
+
+        /* BUTTON */
+        .music-btn {
+            margin-top: 35px;
+            padding: 15px 30px;
+            border: 1px solid #ff8fc8;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .music-btn:hover {
+            background: #ff8fc8;
+            color: #190015;
+            box-shadow: 0 0 30px #ff8fc8;
+        }
+
+        /* SECTION */
+        section {
+            min-height: 100vh;
+            padding: 100px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: #ff8fc8;
+        }
+
+        /* LETTER */
+        .letter {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 45px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 143, 200, .3);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 40px rgba(255, 80, 170, .1);
+            line-height: 2;
+            color: #ead7e7;
+            font-size: 16px;
+        }
+
+        .letter .signature {
+            margin-top: 25px;
+            color: #ff9dcc;
+            font-family: Georgia, serif;
+            font-size: 25px;
+        }
+
+        /* LYRICS */
+        .lyrics-box {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 35px;
+            background: rgba(0, 0, 0, .25);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 143, 200, .2);
+        }
+
+        .lyrics {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            text-align: center;
+        }
+
+        .lyrics p {
+            color: #c7aabd;
+            font-size: 17px;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: showLine 1s forwards;
+        }
+
+        .lyrics p:nth-child(1) {
+            animation-delay: .5s;
+        }
+
+        .lyrics p:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        .lyrics p:nth-child(3) {
+            animation-delay: 2.5s;
+        }
+
+        .lyrics p:nth-child(4) {
+            animation-delay: 3.5s;
+        }
+
+        .lyrics p:nth-child(5) {
+            animation-delay: 4.5s;
+        }
+
+        .lyrics p:nth-child(6) {
+            animation-delay: 5.5s;
+        }
+
+        @keyframes showLine {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlight {
+            color: #ff8fc8 !important;
+            font-size: 25px !important;
+            font-family: Georgia, serif;
+        }
+
+        /* PHOTO */
+        .photo-box {
+            margin: 40px auto;
+            max-width: 350px;
+            padding: 12px;
+            background: white;
+            transform: rotate(-3deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+        }
+
+        .photo-box img {
+            width: 100%;
+            display: block;
+        }
+
+        .photo-caption {
+            color: #222;
+            padding: 15px 5px 8px;
+            font-family: cursive;
+            font-size: 18px;
+        }
+
+        /* FINAL */
+        .final {
+            min-height: 80vh;
+            text-align: center;
+        }
+
+        .final h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: normal;
+        }
+
+        .final h2 span {
+            color: #ff8fc8;
+        }
+
+        .final p {
+            margin-top: 25px;
+            color: #cdb4c9;
+            font-size: 18px;
+        }
+
+        .big-heart {
+            font-size: 70px;
+            margin-top: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .letter {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .lyrics-box {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="stars"></div>
+
+    <!-- MUSIK -->
+    <audio id="music" loop>
+        <source src="risk-it-all.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+
+            <div class="small-text">
+                A LITTLE WEBSITE FOR SOMEONE SPECIAL
+            </div>
+
+            <h1>
+                For You,<br>
+                <span>My Love ❤️</span>
+            </h1>
+
+            <p class="subtitle">
+                Di antara banyaknya manusia di dunia ini,<br>
+                aku bersyukur bisa menemukan kamu.
+            </p>
+
+            <button class="music-btn" onclick="playMusic()">
+                ▶ Play Our Song
+            </button>
+
+            <div class="scroll">
+                ↓ scroll pelan-pelan ↓
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SURAT -->
+    <section>
+        <div class="container">
+
+            <h2 class="section-title">
+                A Letter <span>For You</span> 💌
+            </h2>
+
+            <div class="letter">
+
+                Hai sayang ❤️
+
+                <br><br>
+
+                Aku mungkin bukan orang yang paling sempurna.
+                Aku juga mungkin masih sering melakukan kesalahan.
+                Tapi satu hal yang aku tahu,
+                aku sangat bersyukur bisa memiliki kamu.
+
+                <br><br>
+
+                Terima kasih karena sudah hadir di hidupku.
+                Terima kasih untuk setiap tawa,
+                setiap cerita,
+                dan setiap momen kecil yang kita lalui bersama.
+
+                <br><br>
+
+                Aku tidak tahu apa yang akan terjadi di masa depan.
+                Tapi selama masih ada kamu,
+                aku ingin terus berusaha.
+
+                <div class="signature">
+                    With all my heart,<br>
+                    Your Person ❤️
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LIRIK -->
+    <section>
+        <div class="container">
+
+            <h2 class="section-title">
+                Our <span>Song</span> 🎵
+            </h2>
+
+            <div class="lyrics-box">
+
+                <div class="lyrics">
+
+                    <p>For just a chance to win your heart</p>
+
+                    <p>You could set the bar beyond the stars</p>
+
+                    <p>I'll do anything, anything you ask me to</p>
+
+                    <p>Say you want the moon, watch me learn to fly</p>
+
+                    <p>It's crazy, but it's true</p>
+
+                    <p class="highlight">
+                        I'd risk it all for you ❤️
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOTO -->
+    <section>
+        <div class="container">
+
+            <h2 class="section-title">
+                One Of My <span>Favorite Memories</span> 📸
+            </h2>
+
+            <div class="photo-box">
+
+                <!-- GANTI FOTO DI BAWAH -->
+                <img src="foto.jpeg" alt="Our Memory">
+
+                <div class="photo-caption">
+                    "My favorite place is wherever you are." ❤️
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section class="final">
+
+        <div class="container">
+
+            <h2>
+                I Choose <span>You</span>
+            </h2>
+
+            <p>
+                Today, tomorrow, and every day after that.
+            </p>
+
+            <div class="big-heart">
+                ❤️
+            </div>
+
+            <p>
+                I love you more than words can explain.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        // MUSIK
+        function playMusic() {
+
+            const music = document.getElementById("music");
+            const button = document.querySelector(".music-btn");
+
+            if (music.paused) {
+
+                music.play();
+
+                button.innerHTML = "⏸ Pause Our Song";
+
+            } else {
+
+                music.pause();
+
+                button.innerHTML = "▶ Play Our Song";
+
+            }
+
+        }
+
+
+        // FLOATING HEARTS
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+
+            const hearts = ["❤️", "💗", "💕", "♡", "✦"];
+
+            heart.innerHTML =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            heart.style.animationDuration =
+                (Math.random() * 5 + 5) + "s";
+
+            heart.style.fontSize =
+                (Math.random() * 15 + 15) + "px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 10000);
+
+        }
+
+        setInterval(createHeart, 700);
+
+    </script>
+
+</body>
+</html>
+```
